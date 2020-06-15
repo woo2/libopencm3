@@ -1,0 +1,2 @@
+PREDEFINED += __ARM_ARCH_7EM__
+

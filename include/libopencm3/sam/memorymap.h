@@ -31,6 +31,8 @@
 #	include <libopencm3/sam/3u/memorymap.h>
 #elif defined(SAM3X)
 #	include <libopencm3/sam/3x/memorymap.h>
+#elif defined(SAM4E)
+#	include <libopencm3/sam/4e/memorymap.h>
 #elif defined(SAM4L)
 #	include <libopencm3/sam/4l/memorymap.h>
 #elif defined(SAMD)

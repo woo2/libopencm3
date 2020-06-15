@@ -60,6 +60,8 @@
 #	include "../sam/3u/vector_nvic.c"
 #elif defined(SAM3X)
 #	include "../sam/3x/vector_nvic.c"
+#elif defined(SAM4E)
+#	include "../sam/4e/vector_nvic.c"
 #elif defined(SAM4L)
 #	include "../sam/4l/vector_nvic.c"
 #elif defined(SAMD)
