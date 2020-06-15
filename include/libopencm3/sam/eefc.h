@@ -37,23 +37,34 @@
 
 
 /* EEFC Flash Mode Register (EEFC_FMR) */
-/* Bit [31:25] - Reserved */
+/* Bit [31:27] - Reserved */
+#define EEFC_FMR_CLOE			(0x01 << 26) /* SAM4E only */
+/* Bit [25] - Reserved */
 #define EEFC_FMR_FAM			(0x01 << 24)
-/* Bit [23:12] - Reserved */
-#define EEFC_FMR_FWS_MASK		(0x0F << 8)
+/* Bit [23:17] - Reserved */
+#define EEFC_FMR_SCOD			(0x01 << 16) /* SAM4E only */
+/* Bit [15:12] - Reserved */
+#define EEFC_FMR_FWS_SHIFT		8
+#define EEFC_FMR_FWS_MASK		(0x0F << EEFC_FMR_FWS_SHIFT)
 /* Bit [7:1] - Reserved */
 #define EEFC_FMR_FRDY			(0x01 << 0)
 
 /* EEFC Flash Command Register (EEFC_FCR) */
 #define EEFC_FCR_FKEY			(0x5A << 24)
-#define EEFC_FCR_FARG_MASK		(0xFFFF << 8)
-#define EEFC_FCR_FCMD_MASK		(0xFF << 0)
+
+#define EEFC_FCR_FARG_SHIFT		8
+#define EEFC_FCR_FARG_MASK		(0xFFFF << EEFC_FCR_FARG_SHIFT)
+
+#define EFFC_FCR_FCMD_SHIFT		0
+#define EEFC_FCR_FCMD_MASK		(0xFF << EFFC_FCR_FCMD_SHIFT)
+
 #define EEFC_FCR_FCMD_GETD		(0x00 << 0)
 #define EEFC_FCR_FCMD_WP		(0x01 << 0)
 #define EEFC_FCR_FCMD_WPL		(0x02 << 0)
 #define EEFC_FCR_FCMD_EWP		(0x03 << 0)
 #define EEFC_FCR_FCMD_EWPL		(0x04 << 0)
 #define EEFC_FCR_FCMD_EA		(0x05 << 0)
+#define EEFC_FCR_FCMD_EPA		(0x07 << 0)
 #define EEFC_FCR_FCMD_SLB		(0x08 << 0)
 #define EEFC_FCR_FCMD_CLB		(0x09 << 0)
 #define EEFC_FCR_FCMD_GLB		(0x0A << 0)
@@ -62,9 +73,18 @@
 #define EEFC_FCR_FCMD_GGPB		(0x0D << 0)
 #define EEFC_FCR_FCMD_STUI		(0x0E << 0)
 #define EEFC_FCR_FCMD_SPUI		(0x0F << 0)
+/* SAM4E only */
+#define EEFC_FCR_FCMD_GCALB		(0x10 << 0)
+#define EEFC_FCR_FCMD_ES		(0x11 << 0)
+#define EEFC_FCR_FCMD_WUS		(0x12 << 0)
+#define EEFC_FCR_FCMD_EUS		(0x13 << 0)
+#define EEFC_FCR_FCMD_STUS		(0x14 << 0)
+#define EEFC_FCR_FCMD_SPUS		(0x15 << 0)
+
 
 /* EEFC Flash Status Register (EEFC_FSR) */
-/* Bit [31:3] - Reserved */
+/* Bit [31:4] - Reserved */
+#define EEFC_FSR_FLERR			(0x01 << 3)
 #define EEFC_FSR_FLOCKE			(0x01 << 2)
 #define EEFC_FSR_FCMDE			(0x01 << 1)
 #define EEFC_FSR_FRDY			(0x01 << 0)
@@ -74,10 +94,11 @@ static inline void eefc_set_latency(uint8_t wait)
 #if defined(SAM3A) || defined(SAM3U) || defined(SAM3X)
 	EEFC_FMR(EEFC0) = (EEFC_FMR(EEFC0) & ~EEFC_FMR_FWS_MASK) | (wait << 8);
 	EEFC_FMR(EEFC1) = (EEFC_FMR(EEFC1) & ~EEFC_FMR_FWS_MASK) | (wait << 8);
-#elif defined(SAM3N) || defined(SAM3S)
+#elif defined(SAM3N) || defined(SAM3S) || defined(SAM4E)
 	EEFC_FMR(EEFC) = (EEFC_FMR(EEFC) & ~EEFC_FMR_FWS_MASK) | (wait << 8);
+#else
+#	warning "eefc_set_latency() is unimplemented"
 #endif
 }
 
 #endif
-
