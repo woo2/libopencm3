@@ -104,3 +104,35 @@ void pmc_clock_setup_in_rc_4mhz_out_84mhz(void)
 	pmc_mck_frequency = 84000000;
 }
 
+void  pmc_master_clock_setup(struct pmc_clock_settings* settings) {
+
+	if (settings->in_src != MCK_SRC_SLOW) {
+		if(settings->main_clock_use_xtal) {
+			pmc_xtal_enable(true, 0xff);
+			CKGR_MOR = CKGR_MOR_KEY | CKGR_MOR_MOSCSEL;
+		} else {
+			uint32_t MOSCRCF_value = (settings->in_frequency/4000000)-1;
+			CKGR_MOR = CKGR_MOR_KEY |
+				(MOSCRCF_value << CKGR_MOR_MOSCRCF_SHIFT);
+			pmc_xtal_enable(false, 0xff);
+			CKGR_MOR = CKGR_MOR_KEY |
+				(CKGR_MOR & ~CKGR_MOR_MOSCSEL);
+		}
+	}
+
+	switch (settings->in_src) {
+		case MCK_SRC_SLOW:
+		case MCK_SRC_MAIN:
+			pmc_mck_frequency = settings->in_frequency;
+			break;
+		case MCK_SRC_PLLA:
+			/* Select as main oscillator */
+			CKGR_MOR |= CKGR_MOR_KEY | CKGR_MOR_MOSCSEL;
+			pmc_plla_config(settings->pll_out_frequency/settings->in_frequency, 1);
+			pmc_mck_frequency = settings->pll_out_frequency;
+			break;
+		default:
+			break;
+	}
+	pmc_mck_set_source(settings->in_src);
+}

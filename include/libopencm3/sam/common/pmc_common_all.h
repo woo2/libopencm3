@@ -492,6 +492,14 @@ enum mck_src {
 	MCK_SRC_UPLL = 3,
 };
 
+struct pmc_clock_settings
+{
+	bool main_clock_use_xtal;
+	enum mck_src in_src;
+	uint32_t in_frequency;
+	uint32_t pll_out_frequency;
+};
+
 void pmc_mck_set_source(enum mck_src src);
 void pmc_xtal_enable(bool en, uint8_t startup_time);
 void pmc_plla_config(uint8_t mul, uint8_t div);
