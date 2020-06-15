@@ -118,6 +118,9 @@
 
 /* --- PMC Clock Generator Main Oscillator Register (CKGR_MOR) ------------- */
 
+/* 32768 Hz Crystal Oscillator Frequency Monitoring Enable */
+#define CKGR_MOR_XT32KFME		(0x01 << 26)
+
 /* Clock Failure Detector Enable */
 #define CKGR_MOR_CFDEN			(0x01 << 25)
 
@@ -142,6 +145,9 @@
 
 /* Main On-Chip RC Oscillator Enable */
 #define CKGR_MOR_MOSCRCEN		(0x01 << 3)
+
+/* Wait Mode Command */
+#define CKGR_MOR_WAITMODE		(0x01 << 2)
 
 /* Main Crystal Oscillator Bypass */
 #define CKGR_MOR_MOSCXTBY		(0x01 << 1)

@@ -27,6 +27,8 @@
 #       include <libopencm3/sam/3u/pmc.h>
 #elif defined(SAM3X)
 #       include <libopencm3/sam/3x/pmc.h>
+#elif defined(SAM4E)
+#       include <libopencm3/sam/4e/pmc.h>
 #else
 #       error "sam family not defined."
 #endif
