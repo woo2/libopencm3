@@ -50,6 +50,10 @@
 
 /* --- Register contents --------------------------------------------------- */
 
+/* --- PMC Master Clock Register (PMC_MCKR) -------------------------------- */
+
+/* PLL Divide by 2 */
+#define PMC_MCKR_PLLADIV2		(0x01 << 12)
 
 /* --- PMC USB Clock Register (PMC_USB) ------------------------------------ */
 

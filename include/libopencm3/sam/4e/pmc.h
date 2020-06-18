@@ -27,9 +27,6 @@
 /* --- Power Management Controller (PMC) registers ----------------------- */
 
 
-/* Oscillator Calibration Register */
-#define PMC_OCR				MMIO32(PMC_BASE + 0x0110)
-
 /* PLL Maximum Multiplier Value Register */
 #define PMC_PMMR			MMIO32(PMC_BASE + 0x0130)
 
@@ -90,30 +87,6 @@
 
 /* PLL Lock Interrupt Mask */
 #define PMC_IMR_LOCK			PMC_IMR_LOCKA
-
-
-/* --- PMC Oscillator Calibration Register (PMC_OCR) ----------------------- */
-
-/* Selection of RC Oscillator Calibration bits for 12 Mhz */
-#define PMC_OCR_SEL12			(0x01 << 23)
-
-/* RC Oscillator Calibration bits for 12 Mhz */
-#define PMC_OCR_CAL12_SHIFT		16
-#define PMC_OCR_CAL12_MASK		(0x7F << PMC_OCR_CAL12_SHIFT)
-
-/* Selection of RC Oscillator Calibration bits for 8 Mhz */
-#define PMC_OCR_SEL8			(0x01 << 15)
-
-/* RC Oscillator Calibration bits for 8 Mhz */
-#define PMC_OCR_CAL8_SHIFT		8
-#define PMC_OCR_CAL8_MASK		(0x7F << PMC_OCR_CAL8_SHIFT)
-
-/* Selection of RC Oscillator Calibration bits for 4 Mhz */
-#define PMC_OCR_SEL4			(0x01 << 7)
-
-/* RC Oscillator Calibration bits for 4 Mhz */
-#define PMC_OCR_CAL4_SHIFT		0
-#define PMC_OCR_CAL4_MASK		(0x7F << PMC_OCR_CAL12_SHIFT)
 
 /* --- PMC PLL Maximum Multiplier Value Register (PMC_PMMR) ----------------------- */
 

@@ -35,12 +35,6 @@
 /* --- Register contents --------------------------------------------------- */
 
 
-/* --- PMC Master Clock Register (PMC_MCKR) -------------------------------- */
-
-/* PLLA Divide by 2 */
-#define PMC_MCKR_PLLADIV2		(0x01 << 12)
-
-
 /* --- PMC Peripheral Control Register (PMC_PCR) --------------------------- */
 
 /* Enable */

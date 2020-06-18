@@ -29,10 +29,6 @@
 /* PLLB Register */
 #define CKGR_PLLBR			MMIO32(PMC_BASE + 0x002C)
 
-/* Oscillator Calibration Register */
-#define PMC_OCR				MMIO32(PMC_BASE + 0x0110)
-
-
 /* --- Register contents --------------------------------------------------- */
 
 
@@ -61,9 +57,6 @@
 
 /* PLLB Divide by 2 */
 #define PMC_MCKR_PLLBDIV2		(0x01 << 13)
-
-/* PLLA Divide by 2 */
-#define PMC_MCKR_PLLADIV2		(0x01 << 12)
 
 /* Master Clock Source Selection */
 #define PMC_MCKR_CSS_PLLB_CLK		(3 << PMC_MCKR_CSS_SHIFT)
@@ -109,30 +102,6 @@
 
 /* PLLB Lock Interrupt Mask */
 #define PMC_IMR_LOCKB			(0x01 << 2)
-
-
-/* --- PMC Oscillator Calibration Register (PMC_OCR) ----------------------- */
-
-/* Selection of RC Oscillator Calibration bits for 12 Mhz */
-#define PMC_OCR_SEL12			(0x01 << 23)
-
-/* RC Oscillator Calibration bits for 12 Mhz */
-#define PMC_OCR_CAL12_SHIFT		16
-#define PMC_OCR_CAL12_MASK		(0x7F << PMC_OCR_CAL12_SHIFT)
-
-/* Selection of RC Oscillator Calibration bits for 8 Mhz */
-#define PMC_OCR_SEL8			(0x01 << 15)
-
-/* RC Oscillator Calibration bits for 8 Mhz */
-#define PMC_OCR_CAL8_SHIFT		8
-#define PMC_OCR_CAL8_MASK		(0x7F << PMC_OCR_CAL8_SHIFT)
-
-/* Selection of RC Oscillator Calibration bits for 4 Mhz */
-#define PMC_OCR_SEL4			(0x01 << 7)
-
-/* RC Oscillator Calibration bits for 4 Mhz */
-#define PMC_OCR_CAL4_SHIFT		0
-#define PMC_OCR_CAL4_MASK		(0x7F << PMC_OCR_CAL12_SHIFT)
 
 
 #endif

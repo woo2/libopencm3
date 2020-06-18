@@ -37,9 +37,11 @@
 
 /* --- PMC Master Clock Register (PMC_MCKR) -------------------------------- */
 
-/* PLLA Divide by 2 */
-#define PMC_MCKR_PLLADIV2		(0x01 << 12)
+/* UPLL Divide by 2 */
+#define PMC_MCKR_UPLLDIV2		(0x01 << 13)
 
+/* Master Clock Source Selection */
+#define PMC_MCKR_CSS_UPLL_CLK		(3 << PMC_MCKR_CSS_SHIFT)
 
 /* --- PMC Peripheral Control Register (PMC_PCR) --------------------------- */
 
